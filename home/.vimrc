@@ -88,6 +88,7 @@ set history=50 " keep 50 lines of command line history
 set ruler      " show the cursor position all the time
 set showcmd    " display incomplete commands
 set incsearch  " do incremental searching
+set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
 
 " Color scheme
 set t_Co=256 " Set 256 colors
