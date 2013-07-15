@@ -182,7 +182,22 @@ set ignorecase
 set smartcase
 
 " Set a custom status line to include the current Git branch
-set statusline=%<\ %n:%f\ %y\ %{fugitive#statusline()}\ %m%r%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+func! SyntaxItem()
+  if exists("g:syntax_item_enabled") && g:syntax_item_enabled == 1
+    return "[" . synIDattr(synID(line('.'),col('.'),1),'name') . "]"
+  else
+    return ""
+  endif
+endfunc
+func! ToggleSyntaxItem()
+  if exists("g:syntax_item_enabled") && g:syntax_item_enabled == 1
+    let g:syntax_item_enabled = 0
+  elseif !exists("g:syntax_item_enabled") || g:syntax_item_enabled == 0
+    let g:syntax_item_enabled = 1
+  endif
+endfunc
+map <Leader>s :call ToggleSyntaxItem()<CR>
+set statusline=%n:%f\ %y\ %{fugitive#statusline()}\ %m%r%=%{SyntaxItem()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)
 
 " CTRL-F will run Ag for global search
 map <C-F> :Ag!<Space>
