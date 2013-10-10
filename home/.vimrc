@@ -40,9 +40,8 @@ Bundle "tpope/vim-markdown"
 " HAML, Sass, SCSS
 Bundle "tpope/vim-haml"
 " Gist
+Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
-" GitGutter
-Bundle "airblade/vim-gitgutter"
 " Mustache
 Bundle "juvenn/mustache.vim"
 " Handlebars
@@ -209,6 +208,7 @@ command! Respace %s/\(\s\+\)\(\n\)/\2/
 set clipboard=unnamed
 
 " Line numbers
+set number
 set relativenumber
 
 " Highlight cursor line number
@@ -223,3 +223,10 @@ nnoremap <right> <nop>
 " Project specific vimrc
 set exrc
 set secure
+
+" Tabularize on first space
+vnoremap <leader>tw :Tab/^\s*\zs\S*\ze.*$<cr>
+
+" Commands for vimdiff-enhanced
+nno do :<C-U>exe 'diffget' v:count ? v:count : ''<CR>
+nno dp :<C-U>exe 'diffput' v:count ? v:count : ''<CR>
