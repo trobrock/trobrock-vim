@@ -50,12 +50,20 @@ Bundle "nono/vim-handlebars"
 Bundle "nanki/treetop.vim"
 " Coffeescript
 Bundle "kchmck/vim-coffee-script"
+" EmberScript
+Bundle "heartsentwined/vim-ember-script"
 " Thrift
 Bundle "sprsquish/thrift.vim"
 " Rust support
 Bundle "wting/rust.vim"
 " Erlang support
 Bundle "jimenezrick/vimerl"
+" Ruby support
+Bundle "vim-ruby/vim-ruby"
+" Rubocop support
+Bundle "ngmy/vim-rubocop"
+" Syntastic
+Bundle "scrooloose/syntastic"
 " Solarized theme
 Bundle "andrewkatz/vim-colors-solarized"
 
@@ -75,8 +83,10 @@ map <unique> <Leader>r <Plug>RubyTestRun
 map <unique> <Leader>R <Plug>RubyFileRun
 let g:rubytest_cmd_testcase = "ruby '%p' -n '/%c/'"
 
-" Configure GitGutter
-let g:gitgutter_eager = 0
+" Configure Syntastic
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+map <Leader>s :SyntasticToggleMode<CR>
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -195,7 +205,7 @@ func! ToggleSyntaxItem()
     let g:syntax_item_enabled = 1
   endif
 endfunc
-map <Leader>s :call ToggleSyntaxItem()<CR>
+map <Leader>S :call ToggleSyntaxItem()<CR>
 set statusline=%n:%f\ %y\ %{fugitive#statusline()}\ %m%r%=%{SyntaxItem()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)
 
 " CTRL-F will run Ag for global search
@@ -230,3 +240,8 @@ vnoremap <leader>tw :Tab/^\s*\zs\S*\ze.*$<cr>
 " Commands for vimdiff-enhanced
 nno do :<C-U>exe 'diffget' v:count ? v:count : ''<CR>
 nno dp :<C-U>exe 'diffput' v:count ? v:count : ''<CR>
+
+nn zz :w<cr>
+ino zz <esc>:w<cr>
+
+nmap <leader>n :NERDTreeToggle<cr>
