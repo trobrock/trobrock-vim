@@ -84,7 +84,7 @@ map <unique> <Leader>R <Plug>RubyFileRun
 let g:rubytest_cmd_testcase = "ruby '%p' -n '/%c/'"
 
 " Configure Syntastic
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 map <Leader>s :SyntasticToggleMode<CR>
 
@@ -118,9 +118,9 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   set hlsearch
 endif
 
-" Show a vertical line/guard at column 120
+" Show a vertical line/guard at column 100
 if exists('+colorcolumn')
-  set colorcolumn=120
+  set colorcolumn=100
 endif
 
 " Configure characters for hidden characters
