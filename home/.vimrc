@@ -42,10 +42,8 @@ Bundle "tpope/vim-haml"
 " Gist
 Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
-" Mustache
-Bundle "juvenn/mustache.vim"
 " Handlebars
-Bundle "nono/vim-handlebars"
+Bundle "mustache/vim-mustache-handlebars"
 " Treetop
 Bundle "nanki/treetop.vim"
 " Coffeescript
@@ -84,7 +82,7 @@ map <unique> <Leader>R <Plug>RubyFileRun
 let g:rubytest_cmd_testcase = "ruby '%p' -n '/%c/'"
 
 " Configure Syntastic
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [ 'html' ] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 map <Leader>s :SyntasticToggleMode<CR>
 
@@ -103,7 +101,6 @@ set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
 set t_Co=256 " Set 256 colors
 colorscheme solarized
 set background=dark
-set guifont=Bitstream\ Vera\ Sans\ Mono:h14
 
 " change status bar based on current mode
 if version >= 700
@@ -118,9 +115,9 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   set hlsearch
 endif
 
-" Show a vertical line/guard at column 120
+" Show a vertical line/guard at column 100
 if exists('+colorcolumn')
-  set colorcolumn=120
+  set colorcolumn=100
 endif
 
 " Configure characters for hidden characters
