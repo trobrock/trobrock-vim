@@ -39,25 +39,22 @@ Bundle "janx/vim-rubytest"
 Bundle "tpope/vim-markdown"
 " HAML, Sass, SCSS
 Bundle "tpope/vim-haml"
-" Gist
-Bundle "mattn/webapi-vim"
-Bundle "mattn/gist-vim"
 " Handlebars
 Bundle "mustache/vim-mustache-handlebars"
-" Treetop
-Bundle "nanki/treetop.vim"
+" JSX
+Bundle 'mxw/vim-jsx'
+" Javascript
+Bundle "othree/yajs.vim"
 " Coffeescript
 Bundle "kchmck/vim-coffee-script"
-" EmberScript
-Bundle "heartsentwined/vim-ember-script"
-" Thrift
-Bundle "sprsquish/thrift.vim"
-" Rust support
-Bundle "wting/rust.vim"
-" Erlang support
-Bundle "jimenezrick/vimerl"
 " Ruby support
 Bundle "vim-ruby/vim-ruby"
+" Emblem.js support
+Bundle "heartsentwined/vim-emblem"
+" API Blueprint support
+Bundle "kylef/apiblueprint.vim"
+" Swift support
+Bundle "keith/swift.vim"
 " Rubocop support
 Bundle "ngmy/vim-rubocop"
 " Syntastic
@@ -76,15 +73,32 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 let g:ctrlp_custom_ignore = 'vendor/\(gems\|cache\|bin\|bundler\|doc\|specifications\|ruby\)'
 map <Leader>b :CtrlPBuffer<CR>
 
+" Enable JSX in JS
+let g:jsx_ext_required = 0
+
 " Configure ruby test
 map <unique> <Leader>r <Plug>RubyTestRun
 map <unique> <Leader>R <Plug>RubyFileRun
 let g:rubytest_cmd_testcase = "ruby '%p' -n '/%c/'"
+let g:rubytest_cmd_example = "rspec '%p:%c'"
 
 " Configure Syntastic
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [ 'html' ] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': [ 'html' ] }
+let g:syntastic_ruby_rubocop_exec = './.bin/rubocop'
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_coffee_coffeelint_args = "--csv --file .coffeescript-style.json"
+let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_scss_scss_list_args = "-c .scss-style.yml"
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
 map <Leader>s :SyntasticToggleMode<CR>
+
+if executable('./node_modules/.bin/eslint')
+  let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
+  let g:syntastic_javascript_checkers = ['eslint']
+else
+  let g:syntastic_javascript_checkers = ['jshint']
+endif
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -135,12 +149,9 @@ if has("autocmd")
   filetype plugin indent on
 
   " Set file type for unknown files
-  au! BufNewFile,BufRead *.bats      setfiletype sh
   au! BufNewFile,BufRead *.txt      setfiletype text
   au! BufNewFile,BufRead *.ejs      setfiletype html
   au! BufNewFile,BufRead *.thrift   setfiletype thrift
-  au! BufNewFile,BufRead *.god      setfiletype ruby
-  au! BufNewFile,BufRead *.hamlbars setfiletype haml
   au! BufNewFile,BufRead Gemfile    setfiletype ruby
 
   " Enable soft-wrapping for text files
@@ -154,8 +165,8 @@ if has("autocmd")
     \   exe "normal g`\"" |
     \ endif
 
-  " Jump to the right place when editing mail in mutt
-  autocmd BufRead mutt* execute 'normal gg6jo'
+  " Ruby speed
+  autocmd FileType ruby setlocal re=1 ttyfast
 else
   set autoindent    " always set autoindenting on
 endif
@@ -234,11 +245,16 @@ set secure
 " Tabularize on first space
 vnoremap <leader>tw :Tab/^\s*\zs\S*\ze.*$<cr>
 
-" Commands for vimdiff-enhanced
-nno do :<C-U>exe 'diffget' v:count ? v:count : ''<CR>
-nno dp :<C-U>exe 'diffput' v:count ? v:count : ''<CR>
-
-nn zz :w<cr>
-ino zz <esc>:w<cr>
-
 nmap <leader>n :NERDTreeToggle<cr>
+
+" inoremap <silent> = =<Esc>:call <SID>ealign()<CR>a
+" function! s:ealign()
+"   let p = '^.*=\s.*$'
+"   if exists(':Tabularize') && getline('.') =~# p && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+"     let column = strlen(substitute(getline('.')[0:col('.')],'[^=]','','g'))
+"     let position = strlen(matchstr(getline('.')[0:col('.')],'.*=\s*\zs.*'))
+"     Tabularize/=/l1
+"     normal! 0
+"     call search(repeat('[^=]*=',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+"   endif
+" endfunction

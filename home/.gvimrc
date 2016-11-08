@@ -7,3 +7,5 @@
 " set guifont=DejaVu\ Sans\ Mono:h13
 
 set guioptions-=T " hide toolbar
+
+set guifont=Source\ Code\ Pro:h15
