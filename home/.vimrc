@@ -7,60 +7,79 @@ set nocompatible
 " Required by vundle
 filetype off
 
-" Setup vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Vundle
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
 " Sensible defaults
-Bundle "tpope/vim-sensible"
+Plugin 'tpope/vim-sensible'
 " Fuzzy file search
-Bundle "kien/ctrlp.vim"
+Plugin 'kien/ctrlp.vim'
 " File tree explorer
-Bundle "scrooloose/nerdtree"
+Plugin 'scrooloose/nerdtree'
 " Text filtering and alignment
-Bundle "godlygeek/tabular"
+Plugin 'godlygeek/tabular'
 " Silver Searcher requires 'brew install the_silver_searcher'
-Bundle "rking/ag.vim"
+Plugin 'rking/ag.vim'
 " Git integration
-Bundle "tpope/vim-fugitive"
+Plugin 'tpope/vim-fugitive'
 " Easy code commenting
-Bundle "tpope/vim-commentary"
+Plugin 'tpope/vim-commentary'
 " Surround things with other things
-Bundle "tpope/vim-surround"
+Plugin 'tpope/vim-surround'
 " Add your ends
-Bundle "tpope/vim-endwise"
+Plugin 'tpope/vim-endwise'
 " Paired helpers for repetitive commands
-Bundle "tpope/vim-unimpaired"
+Plugin 'tpope/vim-unimpaired'
 " Run ruby tests
-Bundle "janx/vim-rubytest"
+Plugin 'janx/vim-rubytest'
 " Markdown
-Bundle "tpope/vim-markdown"
+Plugin 'tpope/vim-markdown'
 " HAML, Sass, SCSS
-Bundle "tpope/vim-haml"
+Plugin 'tpope/vim-haml'
 " Handlebars
-Bundle "mustache/vim-mustache-handlebars"
+Plugin 'mustache/vim-mustache-handlebars'
 " JSX
-Bundle 'mxw/vim-jsx'
+Plugin 'mxw/vim-jsx'
 " Javascript
-Bundle "othree/yajs.vim"
+Plugin 'othree/yajs.vim'
 " Coffeescript
-Bundle "kchmck/vim-coffee-script"
+Plugin 'kchmck/vim-coffee-script'
 " Ruby support
-Bundle "vim-ruby/vim-ruby"
+Plugin 'vim-ruby/vim-ruby'
 " Emblem.js support
-Bundle "heartsentwined/vim-emblem"
+Plugin 'heartsentwined/vim-emblem'
 " API Blueprint support
-Bundle "kylef/apiblueprint.vim"
+Plugin 'kylef/apiblueprint.vim'
 " Swift support
-Bundle "keith/swift.vim"
+Plugin 'keith/swift.vim'
+" Octave support
+Plugin 'jvirtanen/vim-octave'
 " Rubocop support
-Bundle "ngmy/vim-rubocop"
-" Syntastic
-Bundle "scrooloose/syntastic"
+Plugin 'ngmy/vim-rubocop'
+" ALE
+Plugin 'w0rp/ale'
 " Solarized theme
-Bundle "andrewkatz/vim-colors-solarized"
+Plugin 'andrewkatz/vim-colors-solarized'
+" UUID Replacement
+Plugin 'kburdett/vim-nuuid'
+" Applescript highlighting
+Plugin 'vim-scripts/applescript.vim'
+" Helm support
+Plugin 'towolf/vim-helm'
+" Terraform support
+Plugin 'hashivim/vim-terraform'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 
 " Globally ignore files and directories
 set wildignore+=**/log/**,*.orig,*.swp,*.rbc,*.pyc
@@ -82,23 +101,9 @@ map <unique> <Leader>R <Plug>RubyFileRun
 let g:rubytest_cmd_testcase = "ruby '%p' -n '/%c/'"
 let g:rubytest_cmd_example = "rspec '%p:%c'"
 
-" Configure Syntastic
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': [ 'html' ] }
-let g:syntastic_ruby_rubocop_exec = './.bin/rubocop'
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_coffee_coffeelint_args = "--csv --file .coffeescript-style.json"
-let g:syntastic_scss_checkers = ['scss_lint']
-let g:syntastic_scss_scss_list_args = "-c .scss-style.yml"
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
-map <Leader>s :SyntasticToggleMode<CR>
-
-if executable('./node_modules/.bin/eslint')
-  let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
-  let g:syntastic_javascript_checkers = ['eslint']
-else
-  let g:syntastic_javascript_checkers = ['jshint']
-endif
+" ALE config
+let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fix_on_save = 1
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
