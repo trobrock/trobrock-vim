@@ -19,8 +19,7 @@ call dein#add('tpope/vim-sensible')
 " CTRL-P
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('nixprime/cpsm', {'build': 'sh -c "PY3=ON ./install.sh"'})
-" NERDTree, file explorer
-" call dein#add('scrooloose/nerdtree')
+" defx.nvim, file explorer
 call dein#add('Shougo/defx.nvim')
 " Tabular, align stuff
 call dein#add('godlygeek/tabular')
@@ -30,21 +29,19 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-commentary')
 " Endwise, literally just add ends in ruby :facepalm:
 call dein#add('tpope/vim-endwise', {'on_ft': ['ruby']})
-" Unimpaired, mostly for ]<SPACE>
-" call dein#add('tpope/vim-unimpaired')
 " ALE, Linter and Formatter
 call dein#add('w0rp/ale')
 
 " THEMES
-"  	solarized
+"    solarized
 call dein#add('lifepillar/vim-solarized8')
 
 " SYNTAX
-"  	Markdown
+"    Markdown
 call dein#add('plasticboy/vim-markdown')
-"  	API Blueprint
+"    API Blueprint
 call dein#add('kylef/apiblueprint.vim')
-"  	Terraform
+"    Terraform
 call dein#add('hashivim/vim-terraform')
 
 call dein#end()
@@ -76,7 +73,7 @@ set backspace=indent,eol,start
 set nobackup
 set nowritebackup
 set history=50 " keep 50 lines of command line history
-set ruler  	 " show the cursor position all the time
+set ruler     " show the cursor position all the time
 set showcmd   " display incomplete commands
 set incsearch  " do incremental searching
 set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
