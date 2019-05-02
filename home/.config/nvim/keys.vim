@@ -13,3 +13,7 @@ vnoremap <leader>tw :Tab/^\s*\zs\S*\ze.*$<cr>
 
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
+
+" test.vim bindings
+nmap <silent> <leader>r :TestNearest<CR>
+nmap <silent> <leader>R :TestFile<CR>

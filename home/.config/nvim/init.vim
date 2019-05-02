@@ -29,12 +29,15 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-commentary')
 " Endwise, literally just add ends in ruby :facepalm:
 call dein#add('tpope/vim-endwise', {'on_ft': ['ruby']})
+" Run tests
+call dein#add('janko-m/vim-test')
 " ALE, Linter and Formatter
 call dein#add('w0rp/ale')
 
 " THEMES
 "    solarized
 call dein#add('lifepillar/vim-solarized8')
+call dein#add('andrewkatz/vim-colors-solarized')
 
 " SYNTAX
 "    Markdown
@@ -56,6 +59,7 @@ source ~/.config/nvim/ctrlp.vim
 source ~/.config/nvim/defx.vim
 source ~/.config/nvim/grep.vim
 source ~/.config/nvim/keys.vim
+source ~/.config/nvim/per_project.vim
 
 " Markdown Config
 let g:vim_markdown_folding_disabled = 1
@@ -141,3 +145,8 @@ autocmd BufReadPost *
 
 " Ruby performance
 autocmd FileType ruby setlocal re=1 ttyfast
+
+" Make CTRL-o exit insert mode in terminal
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+endif
