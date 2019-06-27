@@ -33,6 +33,8 @@ call dein#add('tpope/vim-endwise', {'on_ft': ['ruby']})
 call dein#add('janko-m/vim-test')
 " ALE, Linter and Formatter
 call dein#add('w0rp/ale')
+" Useful pairs of keymappings
+call dein#add('tpope/vim-unimpaired')
 
 " THEMES
 "    solarized
@@ -46,6 +48,8 @@ call dein#add('plasticboy/vim-markdown')
 call dein#add('kylef/apiblueprint.vim')
 "    Terraform
 call dein#add('hashivim/vim-terraform')
+"    JSX
+call dein#add('mxw/vim-jsx')
 
 call dein#end()
 call dein#save_state()
@@ -54,7 +58,6 @@ endif
 source ~/.config/nvim/ale.vim
 source ~/.config/nvim/autocomplete.vim
 source ~/.config/nvim/clipboard.vim
-source ~/.config/nvim/create_lines.vim
 source ~/.config/nvim/ctrlp.vim
 source ~/.config/nvim/defx.vim
 source ~/.config/nvim/grep.vim
