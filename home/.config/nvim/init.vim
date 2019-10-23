@@ -13,6 +13,7 @@ if !has('nvim')
   call dein#add('roxma/nvim-yarp')
   call dein#add('roxma/vim-hug-neovim-rpc')
 endif
+call dein#add('wsdjeg/dein-ui.vim')
 
 " vim-sensible, sensible defaults
 call dein#add('tpope/vim-sensible')
