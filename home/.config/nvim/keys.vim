@@ -17,3 +17,6 @@ map <Leader>h :set invhls <CR>
 " test.vim bindings
 nmap <silent> <leader>r :TestNearest<CR>
 nmap <silent> <leader>R :TestFile<CR>
+
+" Insert a TODO
+nmap <silent> <leader>T OTODO: <ESC>gccA
