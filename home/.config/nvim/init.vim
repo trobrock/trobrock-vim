@@ -19,7 +19,7 @@ call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('tpope/vim-sensible')
 " CTRL-P
 call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('nixprime/cpsm', {'build': 'sh -c "PY3=ON ./install.sh"'})
+call dein#add('nixprime/cpsm', {'build': 'sh -c "PY3=OFF ./install.sh"'})
 " defx.nvim, file explorer
 call dein#add('Shougo/defx.nvim')
 " Tabular, align stuff
@@ -36,6 +36,8 @@ call dein#add('janko-m/vim-test')
 call dein#add('w0rp/ale')
 " Useful pairs of keymappings
 call dein#add('tpope/vim-unimpaired')
+" Base64 Encode/Decode
+call dein#add('christianrondeau/vim-base64')
 
 " THEMES
 "    solarized
@@ -64,6 +66,7 @@ source ~/.config/nvim/defx.vim
 source ~/.config/nvim/grep.vim
 source ~/.config/nvim/keys.vim
 source ~/.config/nvim/per_project.vim
+source ~/.config/nvim/python.vim
 
 " Markdown Config
 let g:vim_markdown_folding_disabled = 1
