@@ -36,6 +36,8 @@ call dein#add('janko-m/vim-test')
 call dein#add('w0rp/ale')
 " Useful pairs of keymappings
 call dein#add('tpope/vim-unimpaired')
+" Base64 Encode/Decode
+call dein#add('christianrondeau/vim-base64')
 
 " THEMES
 "    solarized
