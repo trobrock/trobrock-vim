@@ -19,7 +19,7 @@ call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('tpope/vim-sensible')
 " CTRL-P
 call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('nixprime/cpsm', {'build': 'sh -c "PY3=OFF ./install.sh"'})
+call dein#add('nixprime/cpsm', {'build': 'sh -c "PY3=ON ./install.sh"'})
 " defx.nvim, file explorer
 call dein#add('Shougo/defx.nvim')
 " Tabular, align stuff
@@ -53,6 +53,8 @@ call dein#add('kylef/apiblueprint.vim')
 call dein#add('hashivim/vim-terraform')
 "    JSX
 call dein#add('mxw/vim-jsx')
+"    Solidity
+call dein#add('tomlion/vim-solidity')
 
 call dein#end()
 call dein#save_state()

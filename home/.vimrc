@@ -158,6 +158,7 @@ if has("autocmd")
   au! BufNewFile,BufRead *.ejs      setfiletype html
   au! BufNewFile,BufRead *.thrift   setfiletype thrift
   au! BufNewFile,BufRead Gemfile    setfiletype ruby
+  au! BufNewFile,BufRead *.pdf.erb  setfiletype eruby.html
 
   " Enable soft-wrapping for text files
   autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist

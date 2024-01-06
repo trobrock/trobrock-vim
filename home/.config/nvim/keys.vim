@@ -20,3 +20,6 @@ nmap <silent> <leader>R :TestFile<CR>
 
 " Insert a TODO
 nmap <silent> <leader>T OTODO: <ESC>gccA
+
+" Sort a block
+nmap <silent> <leader>s vip:sort<CR>
